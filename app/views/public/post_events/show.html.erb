@@ -1,0 +1,74 @@
+<div class="container mt-5 mb-5">
+HOME > <%= @post_event.genre.genre %> > <%= @post_event.title %>
+
+ <div class="row">
+  <div class="col-4">
+    <% if @post_event.image.attached? %>
+      <%= image_tag @post_event.image, size: "300x400" %>
+    <% else %>
+      <%= image_tag 'no_image.jpg', size: "300x400" %>
+    <% end %>
+  </div>
+
+  <div class="col-5">
+    <table class="table table-borderless">
+    <tr>
+      <th scope="row"></th>
+      <td><h3><%= @post_event.title %></h3></td>
+      <td><span>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div id="favorite_<%= @post_event.id %>">
+          <%= render 'favorite', post_event: @post_event %>
+        </div>
+        <i class="fa-brands fa-twitter fa-lg" style="color: #74a7fe;"></i>
+        </div>
+      </span></td>
+    </tr>
+    <tr>
+      <th scope="row">メンバー</th>
+      <td>
+        <% @post_event.zbs.each do |zb| %>
+          <span><%= zb.zb_name %></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">日程</th>
+      <td><%= @post_event.start_date %> 〜 <%= @post_event.end_date %></td>
+    </tr>
+    <tr>
+      <th scope="row">開催地</th>
+      <td>
+        <% @post_event.places.each do |place| %>
+          <span><%= place.place %></span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">詳細</th>
+      <td><%= @post_event.body %></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <%= link_to(edit_public_post_event_path(@post_event.id), class:"text-dark") do %>
+            <button class="btn btn-outline-primary me-md-2" type="button">編集</button>
+          <% end %>
+          <%#= link_to(public_post_event_path(post_event.id), class:"text-dark") do %>
+            <button class="btn btn-outline-primary" type="button">削除</button>
+          <%# end %>
+        </div>
+      </td>
+    </tr>
+
+
+
+
+    </table>
+  </div>
+
+
+
+  </div>
+</div>

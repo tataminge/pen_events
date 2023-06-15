@@ -1,0 +1,15 @@
+<%= form_with model: [:admin, genre], local:true do |f| %>
+
+  <div class='col-md-3 offset-md-1'>
+    <div class="form-group">
+      ジャンル名
+      <%= f.text_field :genre, class: 'form-control genre_name ' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+
+<% end %>
+
+

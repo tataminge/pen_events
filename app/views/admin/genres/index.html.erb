@@ -1,0 +1,23 @@
+<div class="container mt-5 mb-5">
+  <%= render 'layouts/errors', obj: @genre %>
+  <%= render 'layouts/errors', obj: @place %>
+  <div class='row'>
+
+    <div class='col-md-5 offset-md-1'>
+      <li class="list-group-item list-group-item-secondary">ジャンル一覧・追加</li>
+      <!--ジャンル追加-->
+        <%= render 'form', genre: @genre %>
+      <!--ジャンル一覧-->
+        <%= render 'all', genres: @genres %>
+    </div>
+
+    <div class='col-md-5 offset-md-1'>
+      <li class="list-group-item list-group-item-secondary">開催地一覧・追加</li>
+      <!--開催地追加-->
+        <%= render 'admin/places/form', place: @place %>
+      <!--開催地一覧-->
+        <%= render 'admin/places/all', places: @places %>
+    </div>
+
+  </div>
+</div>

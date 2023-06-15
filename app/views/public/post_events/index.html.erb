@@ -1,0 +1,46 @@
+<div class="container mt-5 mb-5">
+<div class="row row-cols-2 row-cols-md-4 g-2 ">
+
+  <% @post_events.each do |post_event| %>
+  <div class="col">
+    <div class="card h-100">
+      <div class="text-center">
+        <% if post_event.image.attached? %>
+          <%= image_tag post_event.image, width: '80%', height: '80%' %>
+        <% else %>
+          <%= image_tag 'no_image.jpg', width: '80%', height: '80%' %>
+        <% end %>
+      </div>
+      <div class="card-body">
+        <strong><h5 class="card-title">
+          <%= link_to(public_post_event_path(post_event.id), class:"text-dark") do %>
+            <%= post_event.title %>
+          <% end %>
+
+        <div id="favorite_<%= post_event.id %>">
+          <%= render 'favorite', post_event: post_event %>
+        </div>
+
+        </h5></strong>
+        <p class="card-member">
+          <% post_event.zbs.each do |zb| %>
+            <span><%= zb.zb_name %></span>
+          <% end %>
+        </p>
+        <p class="card-text">
+          <span>
+            <%= post_event.start_date %>~<%= post_event.end_date %>
+                |
+            <% post_event.places.each do |place| %>
+              <%= place.place %>
+            <% end %>
+          </span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+  <% end %>
+
+</div>
+</div>

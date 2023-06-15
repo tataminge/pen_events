@@ -1,0 +1,18 @@
+<footer class="shadow-lg">
+  <div class='container mt-5'>
+  	<div class='row justify-content-center'>
+    	<div class='col mx-aut'>
+
+    	  <div class="sns-icons">
+          <i class="fa-brands fa-square-twitter" style="color: #74a7fe;"></i>
+        </div>
+      </div>
+      <div class='col mx-auto'>
+        <% unless admin_signed_in? %>
+        	<%= link_to "管理者ログイン",admin_session_path %>
+        <% end %>
+
+      </div>
+
+    </div>
+</footer>

@@ -1,0 +1,15 @@
+<%= form_with model: [:admin, place], local:true do |f| %>
+
+  <div class='col-md-3 offset-md-1'>
+    <div class="form-group">
+      ジャンル名
+      <%= f.text_field :place, class: 'form-control place_name ' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: 'btn btn-success' %>
+    </div>
+  </div>
+
+<% end %>
+
+
