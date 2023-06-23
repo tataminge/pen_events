@@ -48,6 +48,7 @@ HOME > <%= @post_event.genre.genre %> > <%= @post_event.title %>
       <th scope="row">詳細</th>
       <td><%= @post_event.body %></td>
     </tr>
+    <% if @post_event.member == current_member %>
     <tr>
       <th scope="row"></th>
       <td>
@@ -55,12 +56,13 @@ HOME > <%= @post_event.genre.genre %> > <%= @post_event.title %>
           <%= link_to(edit_public_post_event_path(@post_event.id), class:"text-dark") do %>
             <button class="btn btn-outline-primary me-md-2" type="button">編集</button>
           <% end %>
-          <%#= link_to(public_post_event_path(post_event.id), class:"text-dark") do %>
+          <%= link_to(public_post_event_path(@post_event.id), class:"text-dark") do %>
             <button class="btn btn-outline-primary" type="button">削除</button>
-          <%# end %>
+          <% end %>
         </div>
       </td>
     </tr>
+    <% end %>
 
 
 

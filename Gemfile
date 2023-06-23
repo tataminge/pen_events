@@ -57,3 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise"
 gem 'kaminari','~> 1.2.1'
+
+# プルダウン検索機能
+gem 'ransack'
+gem 'pg_search'

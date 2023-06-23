@@ -32,7 +32,7 @@
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
         <button type="button" class="btn btn-light"><%= link_to "About", about_path %></button>
 
-        <button type="button" class="btn btn-light"><%= link_to "my page" %></button>
+        <button type="button" class="btn btn-light"><%= link_to "my page", public_members_path %></button>
 
 
 
@@ -40,11 +40,17 @@
           <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             イベント一覧
           </button>
-        <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <li><a class="dropdown-item"><%= link_to(public_post_events_path, class:"text-dark") do %>カフェ<% end %></a></li>
-          <li><a class="dropdown-item" href="#">広告</a></li>
-          <li><a class="dropdown-item" href="#">グッズ</a></a></li>
-        </ul>
+
+          <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+
+          <% Genre.all.each do |genre| %>
+          <li><a class="dropdown-item">
+            <%= genre.genre %>
+            <%#= link_to genre.genre, post_events_path(genre_id: genre.id), class:"text-dark" %>
+          </a></li>
+          <% end %>
+          </ul>
         </div>
 
         <button type="button" class="btn btn-light"><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></button>

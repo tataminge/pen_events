@@ -1,0 +1,101 @@
+<%= form_with model: [:public, post_event], url: public_post_event_path(post_event.id), method: :patch do |f| %>
+  <div class="row">
+  <div class="col-4">
+  <label for="formFile" class="form-label">●タイトル</label>
+  <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <br>
+  <div class="field">
+    <%= f.label "●ジャンル" %>
+    <div class="col-4 align-self-start">
+    <%= f.collection_select :genre_id, Genre.all, :id, :genre, { prompt: "--選択して下さい--" }, class: "form-control" %>
+    </div>
+  </div>
+   </div>
+
+<br>
+  <div class="row">
+    <p>●開催地</p>
+      <div class='form-group'>
+        <%= f.collection_check_boxes(:place_ids, Place.all, :id, :place) do |place| %>
+            <div class='form-check'>
+                <%= place.label class: 'form-check-label' do %>
+                    <%= place.check_box class: 'form-check-input' %>
+                    <%= place.text %>
+                <% end %>
+            </div>
+        <% end %>
+      </div>
+  </div>
+  <br>
+
+    <div class="row">
+      <p>●開催期間</p>
+      <div class="col-2">
+        <div class="field">
+          <%= f.label "開始日" %>
+          <%= f.date_field :start_date %>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="field">
+          <%= f.label "終了日" %>
+          <%= f.date_field :end_date %>
+        </div>
+      </div>
+  </div>
+  <br>
+  <div class="row">
+  <div class="col-4">
+  <label for="formFile" class="form-label">●画像</label>
+  <%= f.file_field :image, accept: "image/*", class: "form-control" %>
+  </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="field">
+      <div class="col-4">
+        <%= f.label "●詳細" %>
+        <%= f.text_field :body, class:"form-control" %>
+       </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-4">
+      <div class="field">
+        <%= f.label "●URL" %>
+        <%= f.text_field :url %>
+      </div>
+    </div>
+  </div>
+    <br>
+  <div class="row">
+      <div class="field">
+        <%= f.label "●メンバー" %>※複数選択可能
+    <br>
+    <div class='form-group'>
+        <%= f.collection_check_boxes(:zb_ids, Zb.all, :id, :zb_name) do |zb| %>
+            <div class='form-check'>
+                <%= zb.label class: 'form-check-label' do %>
+                    <%= zb.check_box class: 'form-check-input' %>
+                    <%= zb.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+
+      </div>
+  </div>
+      <br>
+  <div class="row">
+    <div class="col-4">
+      <div class="actions">
+        <%= f.submit "イベント登録" %>
+      </div>
+    </div>
+  </div>
+
+  <% end %>

@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get "homes/about"=>"public/homes#about", as: 'about'
 
   namespace :public do
-    resources :members, only: [:index, :show, :edit]
-    resources :post_events, only: [:show, :index, :new, :edit, :create, :update]do
+    resources :members, only: [:index, :show, :edit, :update]
+    resources :post_events, only: [:show, :index, :new, :edit, :create, :update, :destroy]do
       resource :favorites, only: [:create, :destroy]
     end
   end

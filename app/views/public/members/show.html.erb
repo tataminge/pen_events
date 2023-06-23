@@ -1,2 +1,7 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<div class="container mt-5 mb-5">
+
+  <%= render partial: "header", member: @member %>
+  <%= render partial: "public/post_events/card", post_events: @post_events %>
+
+
+</div>

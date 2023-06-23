@@ -1,8 +1,12 @@
 class Public::PostEventsController < ApplicationController
    before_action :authenticate_member!
+  before_action :ensure_member, {only: [:edit, :update, :destroy]}
+
 
   def index
     @post_events = PostEvent.all
+    # @q = Zb.ransack(params[:q])
+    # @zbs = @q.result(distinct: true)
   end
 
   def show
@@ -45,9 +49,18 @@ class Public::PostEventsController < ApplicationController
 
   private
 
+  def ensure_member
+  	@post_event = PostEvent.find(params[:id])
+  	if @post_event.member_id != current_member.id
+		  flash[:notice] = "権限がありません"
+		  redirect_to public_post_events_path
+	  end
+  end
+
    def post_event_params
      params.require(:post_event).permit(:genre_id, :image, :title, :start_date, :end_date, :body, :url, zb_ids: [], place_ids: [])
    end
+
 
 
 

@@ -1,4 +1,5 @@
 class Zb < ApplicationRecord
+  include PgSearch::Model
 
 
   #Tagsテーブルから中間テーブルに対する関連付け
@@ -10,5 +11,12 @@ class Zb < ApplicationRecord
   with_options presence: true do
     validates :zb_name
   end
+
+
+  pg_search_scope :search_by_zb_name,
+                against: :zb_name,
+                using: {
+                  tsearch: { prefix: true }
+                }
 
 end

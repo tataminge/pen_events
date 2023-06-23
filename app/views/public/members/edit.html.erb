@@ -1,2 +1,19 @@
-<h1>Public::Members#edit</h1>
-<p>Find me in app/views/public/members/edit.html.erb</p>
+<div class="container mt-5 mb-5">
+<p>名前変更</p>
+
+<%= form_with model: [:public, @member], url: public_member_path(@member.id), method: :patch do |f| %>
+  <div class="row">
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "変更" %>
+  </div>
+
+<% end %>
+
+
+</div>
