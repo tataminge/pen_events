@@ -21,9 +21,9 @@ class Public::MembersController < ApplicationController
   end
 
   def index
-    # favorites = Favorite.where(member_id: @member.id).pluck(:post_event_id)
-    # @favorite_posts = Post_event.find(favorites)
     @member = current_member
+    favorites= Favorite.where(member_id: @member.id).pluck(:post_event_id)
+    @post_events= PostEvent.find(favorites)
   end
 
 

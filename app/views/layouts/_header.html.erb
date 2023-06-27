@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
       <div class="row justify-content-center">
-        <%= link_to root_path do %>
+        <%= link_to root_path, class: "text-dark" do %>
           Z_Rose_peninf
         <% end %>
       </div>
@@ -14,26 +14,32 @@
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown" style="text-end" >
-        <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
-          <li class="nav-item">
-            <%#= link_to "イベント一覧", admin_items_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "カテゴリ一覧", admin_genres_path %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
-          </li>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" class="btn btn-light">
+            <%= link_to "会員一覧", admin_root_path, class: "text-dark", style: "text-decoration: none;" %>
+          </button>
+
+          <button type="button" class="btn btn-light">
+            <%= link_to "カテゴリ一覧", admin_genres_path, class: "text-dark", style: "text-decoration: none;" %>
+          </button>
+
+          <button type="button" class="btn btn-light">
+            <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-dark", style: "text-decoration: none;" %>
+          </button>
+        </div>
+
 
          <!--顧客側-->
       <% elsif member_signed_in? %>
       <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-light"><%= link_to "About", about_path %></button>
+          <button type="button" class="btn btn-light">
+            <%= link_to "About", about_path, class: "text-dark", style: "text-decoration: none;" %>
+          </button>
 
-        <button type="button" class="btn btn-light"><%= link_to "my page", public_members_path %></button>
-
+          <button type="button" class="btn btn-light">
+            <%= link_to "my page", public_members_path, class: "text-dark", style: "text-decoration: none;" %>
+          </button>
 
 
         <div class="btn-group" role="group">
@@ -43,38 +49,44 @@
 
           <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 
-
           <% Genre.all.each do |genre| %>
           <li><a class="dropdown-item">
+            <%= link_to(by_genre_public_post_events_path(genre), class: "text-dark d-flex justify-content-center align-items-center", style: "text-decoration: none;") do %>
             <%= genre.genre %>
-            <%#= link_to genre.genre, post_events_path(genre_id: genre.id), class:"text-dark" %>
+            <% end %>
           </a></li>
           <% end %>
           </ul>
         </div>
 
-        <button type="button" class="btn btn-light"><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></button>
-        <button type="button" class="btn btn-light"><%= link_to "言語選択" %></button>
+        <button type="button" class="btn btn-light">
+
+          <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "text-dark", style: "text-decoration: none;" %>
+        </button>
+        <!--<button type="button" class="btn btn-light"><%= link_to "言語選択", class: "text-dark", style: "text-decoration: none;" %></button>-->
       </div>
 
        <% else %>
        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-        <button type="button" class="btn btn-light"><%= link_to "About", about_path %></button>
+        <button type="button" class="btn btn-light"><%= link_to "About", about_path, class: "text-dark", style: "text-decoration: none;" %></button>
 
         <div class="btn-group" role="group">
           <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             イベント一覧
           </button>
         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-          <li><a class="dropdown-item" ><%= link_to(public_post_events_path, class:"text-dark") do %>カフェ<% end %></a></li>
-          <li><a class="dropdown-item" >広告</a></li>
-          <li><a class="dropdown-item" >グッズ</a></a></li>
+          <% Genre.all.each do |genre| %>
+          <li><a class="dropdown-item">
+            <%= link_to(by_genre_public_post_events_path(genre), class: "text-dark d-flex justify-content-center align-items-center", style: "text-decoration: none;") do %>
+            <%= genre.genre %>
+            <% end %>
+          </a></li>
+          <% end %>
         </ul>
         </div>
-
-        <button type="button" class="btn btn-light"><%= link_to "新規登録", new_member_registration_path %></button>
-        <button type="button" class="btn btn-light"><%= link_to "ログイン",new_member_session_path %></button>
-        <button type="button" class="btn btn-light"><%= link_to "言語選択" %></button>
+        <button type="button" class="btn btn-light"><%= link_to "新規登録", new_member_registration_path, class: "text-dark", style: "text-decoration: none;" %></button>
+        <button type="button" class="btn btn-light"><%= link_to "ログイン", new_member_session_path, class: "text-dark", style: "text-decoration: none;" %></button>
+        <!--<button type="button" class="btn btn-light"><%= link_to "言語選択", class: "text-dark", style: "text-decoration: none;" %></button>-->
 
       </div>
       <% end %>

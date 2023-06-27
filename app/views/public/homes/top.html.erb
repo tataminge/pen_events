@@ -1,12 +1,15 @@
 
 <div class="container mt-5 mb-5">
 
-<p>Have a pinna days! :)</p>
+    <div class="row">
+        <p>Have a pinna days! :)</p>
+        <p>☆イベントを登録するにはログインが必要です☆</p>
+    </div>
 
-<p>new</p>
-新しいイベントをジャンル関係なく表示させる
-
-
+    <!--投稿一覧-->
+    <div class="row">
+        <%= render partial: "public/post_events/card", post_events: @post_events %>
+    </div>
 
 </div>
 

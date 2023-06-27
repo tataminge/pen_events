@@ -16,6 +16,7 @@ class PostEvent < ApplicationRecord
   belongs_to :member
   has_many :favorites, dependent: :destroy
 
+
   has_one_attached :image
 
   with_options presence: true do
@@ -23,10 +24,12 @@ class PostEvent < ApplicationRecord
     validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp }
   end
 
-
    def favorited_by?(member)
      favorites.where(member_id: member.id).exists?
    end
+
+  # # タグ検索
+  # scope :with_zbs, ->(zbs_ids) { where(zbs_id: zbs_ids) }
 
 
 

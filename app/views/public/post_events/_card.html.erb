@@ -11,30 +11,53 @@
         <% end %>
       </div>
       <div class="card-body">
-        <strong><h5 class="card-title">
-          <%= link_to(public_post_event_path(post_event.id), class:"text-dark") do %>
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <div class="p-2 bd-highlight">
+          <h5>
+          <%= link_to(public_post_event_path(post_event.id), class:"text-dark align-middle") do %>
             <%= post_event.title %>
           <% end %>
-
-        <div id="favorite_<%= post_event.id %>">
-          <%= render 'public/post_events/favorite', post_event: post_event %>
+          </h5>
+          </div>
+          <div class="p-2 bd-highlight">
+          <div id="favorite_<%= post_event.id %>">
+            <%= render 'public/post_events/favorite', post_event: post_event %>
+          </div>
+          </div>
         </div>
-
-        </h5></strong>
         <p class="card-member">
           <% post_event.zbs.each do |zb| %>
-            <span><%= zb.zb_name %></span>
+            <%= zb.zb_name %>
           <% end %>
         </p>
+
         <p class="card-text">
-          <span>
+            <%= post_event.genre.genre %>
+          <br>
             <%= post_event.start_date %>~<%= post_event.end_date %>
-                |
+          <br>
             <% post_event.places.each do |place| %>
               <%= place.place %>
             <% end %>
-          </span>
         </p>
+
+            <% if post_event.member == current_member %>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <%= link_to(edit_public_post_event_path(post_event.id), class:"text-dark") do %>
+            <button class="btn btn-outline-primary me-md-2" type="button">編集</button>
+          <% end %>
+          <%= button_to '削除', public_post_event_path(post_event.id), method: :delete, class: 'btn btn-outline-primary', data: { confirm: '本当に削除しますか？' } %>
+
+
+        </div>
+      </td>
+    </tr>
+    <% end %>
+
+
       </div>
 
     </div>

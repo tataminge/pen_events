@@ -1,6 +1,11 @@
 <div class="container mt-5 mb-5">
 
   <%= render partial: "header", member: @member %>
+
+  <%= link_to(public_members_path, class:"text-dark") do %>いいね<% end %> | 投稿一覧
+
+
+  <!--投稿一覧-->
   <%= render partial: "public/post_events/card", post_events: @post_events %>
 
 

@@ -1,11 +1,25 @@
- <% if post_event.favorited_by?(current_member) %>
-  <%= link_to public_post_event_favorites_path(post_event.id), method: :delete, remote: true do %>
-   <i class="fa-solid fa-heart fa-lg" style="color: #f4a4c0;"></i>
+<% if current_member.present? %>
+  <% if post_event.favorited_by?(current_member) %>
+   <%= link_to public_post_event_favorites_path(post_event.id), method: :delete, remote: true do %>
+    <button class="btn btn-light btn-circle btn-circle-sm m-1">
+    <i class="fa-solid fa-heart fa-lg" style="color: #f4a4c0;"></i>
     <%= post_event.favorites.count %>
+    </button>
   <% end %>
+  <% else %>
+   <%= link_to public_post_event_favorites_path(post_event.id), method: :post, remote: true do %>
+     <button class="btn btn-light btn-circle btn-circle-sm m-1">
+     <i class="fa-regular fa-heart fa-lg"></i>
+     <%= post_event.favorites.count %>
+     </button>
+   <% end %>
+ <% end %>
 <% else %>
-  <%= link_to public_post_event_favorites_path(post_event.id), method: :post, remote: true do %>
-    <i class="fa-regular fa-heart fa-lg"></i>
+  <%= link_to "", onclick: "alert('いいねをするにはログインが必要です。')" do %>
+    <button class="btn btn-light btn-circle btn-circle-sm m-1">
+    <i class="fa-regular fa-heart fa-lg" style="color: #f4a4c0;"></i>
     <%= post_event.favorites.count %>
+    </button>
   <% end %>
+
 <% end %>

@@ -1,20 +1,20 @@
 
     <p>
         <%= @member.name %>さん
-        <%= link_to edit_public_member_path(@member) do %>
-          <button type="button" class="btn btn-outline-dark btn-sm"> 変更 </button>
-        <% end %>
+        <button class="btn btn-light btn-circle btn-circle-sm m-1">
+          <%= link_to edit_public_member_path(@member), class: "text-dark", style: "text-decoration: none;" do %>
+            各種変更
+          <% end %>
 
+        </button>
+        <button class="btn btn-light btn-circle btn-circle-sm m-1">
         <%= link_to new_public_post_event_path do %>
           <i class="fa-solid fa-newspaper fa-lg" style="color: #444444;"></i>
         <% end %>
+        </button>
     </p>
 
-    <いいね> | <%= link_to(public_member_path(@member), class:"text-dark") do %>投稿一覧<% end %>
 
-
-
-<%#= render partial: "post_events/form", collection: @favorite_posts %>
 
 
 

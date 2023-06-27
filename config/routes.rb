@@ -18,16 +18,18 @@ Rails.application.routes.draw do
 
   namespace :public do
     resources :members, only: [:index, :show, :edit, :update]
-    resources :post_events, only: [:show, :index, :new, :edit, :create, :update, :destroy]do
-      resource :favorites, only: [:create, :destroy]
-    end
+      resources :post_events, only: [:show, :new, :edit, :create, :update, :destroy]do
+        resource :favorites, only: [:create, :destroy]
+        get 'by_genre/:genre_id', action: :by_genre, on: :collection, as: :by_genre
+      end
+
   end
 
 
   # 管理者
   namespace :admin do
     root to: "homes#top"
-    resources :members, only: [:index, :show]
+    resources :members, only: [:index, :show, :destroy]
     resources :genres, only: [:index, :edit, :create, :update]
     resources :places, only: [:edit, :create, :update]
   end
