@@ -1,12 +1,15 @@
 class Public::PostEventsController < ApplicationController
-   before_action :authenticate_member!
+  # before_action :authenticate_member!
   before_action :ensure_member, {only: [:edit, :update, :destroy]}
 
 
   def index
-    @post_events = PostEvent.all
-    # @q = Zb.ransack(params[:q])
-    # @zbs = @q.result(distinct: true)
+    @post_events  = PostEvent.all
+  end
+
+  def by_genre
+    @genre = Genre.find(params[:genre_id])
+    @post_events = @genre.post_events
   end
 
   def show
@@ -41,8 +44,8 @@ class Public::PostEventsController < ApplicationController
 
   def destroy
     @post_event = PostEvent.find(params[:id])
-    @post_image.destroy
-    redirect_to public_post_events_path
+    @post_event.destroy
+    redirect_to public_member_path(current_member.id)
   end
 
 

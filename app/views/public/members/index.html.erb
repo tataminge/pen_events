@@ -3,4 +3,10 @@
 <%= render partial: "header", member: @member %>
 
 
+いいね | <%= link_to(public_member_path(@member), class:"text-dark") do %>投稿一覧<% end %>
+
+<!--いいね一覧-->
+<%= render partial: "public/post_events/card", post_events: @favorite_posts %>
+
+
 </div>

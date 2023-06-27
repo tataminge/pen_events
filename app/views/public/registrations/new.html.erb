@@ -6,6 +6,11 @@
   <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true, placeholder: "ユーザー名" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -28,9 +33,12 @@
   </div>
 <% end %>
 
-        <h3>既に登録済みの方</h3>
-        <%= link_to "こちら",new_member_session_path %>
-      　からログインしてください。
+<br>
+  <h5>既に登録済みの方</h5>
+      <%= link_to(new_member_session_path, class:"text-dark") do %>
+      こちら
+      <% end %>
+      からログインしてください。
 
 
 <%#= render "public/shared/links" %>

@@ -1,4 +1,5 @@
 class TagSearchesController < ApplicationController
-  
-  
+
+
+
 end

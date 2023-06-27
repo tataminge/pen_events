@@ -1,5 +1,5 @@
 <div class="container mt-5 mb-5">
-HOME > <%= @post_event.genre.genre %> > <%= @post_event.title %>
+<%= link_to(root_path, class:"text-dark") do %>HOME<% end %> > <%= link_to(by_genre_public_post_events_path(@post_event.genre), class:"text-dark") do %><%= @post_event.genre.genre %><% end %> > <%= @post_event.title %>
 
  <div class="row">
   <div class="col-4">
@@ -14,15 +14,18 @@ HOME > <%= @post_event.genre.genre %> > <%= @post_event.title %>
     <table class="table table-borderless">
     <tr>
       <th scope="row"></th>
-      <td><h3><%= @post_event.title %></h3></td>
-      <td><span>
+      <td><h5><%= @post_event.title %></h5></td>
+      <td>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <div id="favorite_<%= @post_event.id %>">
-          <%= render 'favorite', post_event: @post_event %>
+
+          <i id="favorite_<%= @post_event.id %>">
+            <%= render 'public/post_events/favorite', post_event: @post_event %>
+          </i>
+          <button class="btn btn-light btn-circle btn-circle-sm m-1">
+          <i class="fa-brands fa-twitter fa-lg" style="color: #74a7fe;"></i>
+          </button>
         </div>
-        <i class="fa-brands fa-twitter fa-lg" style="color: #74a7fe;"></i>
-        </div>
-      </span></td>
+     </td>
     </tr>
     <tr>
       <th scope="row">メンバー</th>
@@ -48,24 +51,6 @@ HOME > <%= @post_event.genre.genre %> > <%= @post_event.title %>
       <th scope="row">詳細</th>
       <td><%= @post_event.body %></td>
     </tr>
-    <% if @post_event.member == current_member %>
-    <tr>
-      <th scope="row"></th>
-      <td>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-          <%= link_to(edit_public_post_event_path(@post_event.id), class:"text-dark") do %>
-            <button class="btn btn-outline-primary me-md-2" type="button">編集</button>
-          <% end %>
-          <%= link_to(public_post_event_path(@post_event.id), class:"text-dark") do %>
-            <button class="btn btn-outline-primary" type="button">削除</button>
-          <% end %>
-        </div>
-      </td>
-    </tr>
-    <% end %>
-
-
-
 
     </table>
   </div>

@@ -24,9 +24,11 @@
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
-
-        <h3>まだ登録していない方は</h3>
-        <%= link_to "こちら",new_member_registration_path %>
+<br>
+  <h5>まだ登録していない方</h5>
+      <%= link_to(new_member_registration_path, class:"text-dark") do %>
+      こちら
+      <% end %>
       　から新規登録をしてください。
 
 

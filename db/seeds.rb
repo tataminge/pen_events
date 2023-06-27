@@ -31,8 +31,33 @@ Zb.create!(zb_name: "キムジウン")
 Zb.create!(zb_name: "ハンユジン")
 
 #開催地初期登録
-Place.create!(place: "日本/東京")
-Place.create!(place: "日本/大阪")
+Place.create!(place: "東京")
+Place.create!(place: "大阪")
 Place.create!(place: "日本/その他")
 Place.create!(place: "韓国")
 Place.create!(place: "その他")
+
+#メンバー初期登録
+Member.create!(
+   email: 'member1@test.com',
+   password: 'member1',
+   name: "うえ",
+   )
+Member.create!(
+   email: 'member2@test.com',
+   password: 'member2',
+   name: "うえ",
+   )
+Member.create!(
+   email: 'member3@test.com',
+   password: 'member3',
+   name: "かお",
+   )
+Member.create!(
+   email: "member4@test.com",
+   password: 'member4',
+   name: "きくこ",
+   )
+
+   
+   

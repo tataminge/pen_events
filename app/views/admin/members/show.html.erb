@@ -1,2 +1,25 @@
-<h1>Admin::Members#show</h1>
-<p>Find me in app/views/admin/members/show.html.erb</p>
+<div class="container mt-5 mb-5">
+
+  <%= @member.name %>さんの投稿一覧
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th>イベントタイトル</th>
+      <th>開催日時</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @member.post_events.each do |post_event| %>
+      <tr>
+        <td><%= post_event.title %></td>
+        <td><%= post_event.start_date %>~<%= post_event.end_date %></td>
+        <td><%#= button_to '削除', public_post_event_path(post_event.id), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+</div>
